@@ -9,6 +9,7 @@ const Modal = (props) => {
         <div className={modal.container}>
         <div className={modal.box}>
                 <Button 
+                    htmlType='button'
                     type='primary'
                     className={modal.close}
                     onClick={props.handleClose} >

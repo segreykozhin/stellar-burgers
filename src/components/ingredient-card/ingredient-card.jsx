@@ -1,11 +1,10 @@
 import card from './ingredient-card.module.css'
 import { CurrencyIcon, Counter} from '@ya.praktikum/react-developer-burger-ui-components'
 
-const IngredientCard = ({ingredient, handleOpen, setIngredientData}) => {
-    setIngredientData({isOpen: true, data: ingredient});
+const IngredientCard = ({ingredient, handleOpen}) => {
 
     return (
-        <div onClick={handleOpen} className={`${card.card}`}>
+        <div onClick={()=>{handleOpen(ingredient)}} className={`${card.card}`}>
             <img className={card.image} src={ingredient.image} alt={ingredient.name} />
             <div className={`${card.price} pt-1 pb-1`}>
                 <p className='text text_type_digits-medium mr-2'>{ingredient.price}</p>

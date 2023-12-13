@@ -16,8 +16,8 @@ const BurgerIngredients = ({data}) => {
    const [current, setCurrent] = useState('Булки');
 
    const [ingredientData, setIngredientData] = useState({isOpen: false, data: {}});
-   const handleOpen = () => {
-    setIngredientData({isOpen: true, ...data});
+   const handleOpen = (ingredient) => {
+    setIngredientData({isOpen: true, data: {...ingredient}});
    }
    const handleClose = () => {
     setIngredientData({isOpen: false, data: {}})
@@ -49,19 +49,19 @@ const BurgerIngredients = ({data}) => {
                 <p className='text text_type_main-medium' >Булки</p>
                 <div className={`${ingredients.items} pt-6 pr-4 pl-4 `}>
                     {buns.map((ingredient) => (
-                     <IngredientCard setIngredientData={setIngredientData} handleOpen={handleOpen} ingredient={ingredient} key={ingredient._id} />
+                     <IngredientCard handleOpen={handleOpen} ingredient={ingredient} key={ingredient._id} />
                     ))}
                 </div>
                 <p className='text text_type_main-medium' >Соусы</p>
                 <div className={`${ingredients.items} pt-6 pr-4 pl-4`}>
                 {sauces.map((ingredient) => (
-                     <IngredientCard setIngredientData={setIngredientData} handleOpen={handleOpen} ingredient={ingredient} key={ingredient._id} />
+                     <IngredientCard handleOpen={handleOpen} ingredient={ingredient} key={ingredient._id} />
                     ))}
                 </div>
                 <p className='text text_type_main-medium' >Начинка</p>
                 <div className={`${ingredients.items} pt-6 pr-4 pl-4`}>
                 {mains.map((ingredient) => (
-                     <IngredientCard setIngredientData={setIngredientData} handleOpen={handleOpen} ingredient={ingredient} key={ingredient._id} />
+                     <IngredientCard handleOpen={handleOpen} ingredient={ingredient} key={ingredient._id} />
                     ))}
                 </div>
             </div>
