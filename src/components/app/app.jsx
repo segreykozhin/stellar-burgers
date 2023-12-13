@@ -46,11 +46,11 @@ function App() {
       setOrderIsVisible(!orderIsVisible);
     }
 
-  // const closeByEscape = (evt) => {
-  //   if (evt.key === 'Escape') {
-  //     handleClose();
-  //   }
-  // }
+  const closeByEscape = (evt) => {
+    if (evt.key === 'Escape') {
+      handleClose();
+    }
+  }
 
   return (
     <div className={styles.app}>
