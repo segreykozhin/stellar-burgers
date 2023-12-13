@@ -1,0 +1,33 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    width: 600px;
+    height: 659px;
+    margin-top: 100px;
+    margin-bottom: 40px;
+    margin-left: 16px;
+}
+
+.list {
+    padding: 0px; 
+    margin-top: 10px; 
+    margin-bottom: 10px; 
+    display: flex;
+    flex-direction: column; 
+    gap: 10px; 
+    overflow-y: scroll;
+}
+
+.item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 568px;
+}
+
+.total {
+    display: flex;
+    margin-right: 16px;
+    align-items: center;
+    justify-content: end;
+}

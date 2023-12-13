@@ -1,0 +1,20 @@
+.card {
+    display: flex;
+    flex-direction: column;
+    width: 272px;
+    height: 208px;
+    position: relative;
+}
+
+.image {
+    margin: 0 auto;
+    justify-self: center;
+    width: 240px;
+    height: 120px;
+}
+
+.price {
+    margin: 0 auto;
+    display: inherit;
+    align-items:center;
+}

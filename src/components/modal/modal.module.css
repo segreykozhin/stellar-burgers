@@ -1,0 +1,40 @@
+.modal {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    bottom: 0;
+    top: 0;
+    left:0;
+    right: 0;
+    z-index: 1;
+}
+
+.box {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    padding-bottom: 36px;
+    padding-right: 40px;
+    padding-top: 40px;
+}
+
+.close {
+    padding: 0;
+    position: absolute;
+    background: transparent;
+    box-shadow: none;
+    border: none;
+    top: 40px;
+    right: 40px;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    width: 720px;
+    background-color: #1c1c21;
+    border-radius: 40px;
+    justify-content: center;
+}
+

@@ -1,0 +1,24 @@
+.container {
+    box-sizing: border-box;
+    width: 600px;
+    scroll-behavior: smooth;
+}
+
+.tab {
+    display: flex;
+    margin-bottom: 40px;
+}
+
+.scroll {
+    scroll-behavior: smooth;
+    overflow-y: scroll;
+    height: 756px;
+    padding: 0;
+}
+
+.items {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-bottom: 40px;
+}
