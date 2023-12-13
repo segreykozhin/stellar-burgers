@@ -26,14 +26,6 @@ function App() {
 
   console.log(data)
 
-  const [ingredientIsVisible, setIngredientIsVisible] = useState({isVisible: false, data: {}});
-  const handleIngredientOpen = (ingredient) => {
-    setIngredientIsVisible({isVisible: true, data: {...ingredient}});
-  }
-  const handleIngredientClose = () => {
-    setIngredientIsVisible({isVisible: false, data: {}});
-    }
-
     const [orderIsVisible, setOrderIsVisible] = useState(false);
     const handleOrderOpen = () => {
       setOrderIsVisible({orderIsVisible: true});
@@ -56,7 +48,7 @@ function App() {
         <main className={styles.main}>
           {(data.length!==0)&&!isDataLoading ?
           <>
-          <BurgerIngredients modalState={ingredientIsVisible} handleIngredientClose={handleIngredientClose} data={data} handleOpen={handleIngredientOpen} />
+          <BurgerIngredients data={data} />
           <BurgerConstructor data={data} handleOpen={handleOrderOpen}/></> : null
           }
           {/* {

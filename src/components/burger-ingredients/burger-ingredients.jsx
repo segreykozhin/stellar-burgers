@@ -4,16 +4,32 @@ import IngredientCard from '../ingredient-card/ingredient-card';
 import React from 'react';
 import Modal from '../modal/modal';
 import IngredientDetails from '../ingredient-details/ingredient-details';
+import PropTypes from 'prop-types';
+import { useState } from 'react';
 
-const BurgerIngredients = ({handleOpen, handleIngredientClose, data, modalState}) => {
+const BurgerIngredients = ({data}) => {
 
    const buns = data.filter((item) => item.type ==='bun');
    const sauces = data.filter((item) => item.type ==='sauce');
    const mains = data.filter((item) => item.type ==='main');
 
-   const [current, setCurrent] = React.useState('Булки');
+   const [current, setCurrent] = useState('Булки');
 
+   const [ingredientData, setIngredientData] = useState({isOpen: false, data: {}});
+   const handleOpen = () => {
+    setIngredientData({isOpen: true, ...data});
+   }
+   const handleClose = () => {
+    setIngredientData({isOpen: false, data: {}})
+   }
 
+//    const [ingredientIsVisible, setIngredientIsVisible] = useState({isVisible: false, data: {}});
+//    const handleIngredientOpen = (ingredient) => {
+//      setIngredientIsVisible({isVisible: true, data: {...ingredient}});
+//    }
+//    const handleIngredientClose = () => {
+//      setIngredientIsVisible({isVisible: false, data: {}});
+//      }
 
     return (
         <div className={`${ingredients.container} custom-scroll`}>
@@ -33,28 +49,28 @@ const BurgerIngredients = ({handleOpen, handleIngredientClose, data, modalState}
                 <p className='text text_type_main-medium' >Булки</p>
                 <div className={`${ingredients.items} pt-6 pr-4 pl-4 `}>
                     {buns.map((ingredient) => (
-                     <IngredientCard handleOpen={handleOpen} ingredient={ingredient} key={ingredient._id} />
+                     <IngredientCard setIngredientData={setIngredientData} handleOpen={handleOpen} ingredient={ingredient} key={ingredient._id} />
                     ))}
                 </div>
                 <p className='text text_type_main-medium' >Соусы</p>
                 <div className={`${ingredients.items} pt-6 pr-4 pl-4`}>
                 {sauces.map((ingredient) => (
-                     <IngredientCard handleOpen={handleOpen} ingredient={ingredient} key={ingredient._id} />
+                     <IngredientCard setIngredientData={setIngredientData} handleOpen={handleOpen} ingredient={ingredient} key={ingredient._id} />
                     ))}
                 </div>
                 <p className='text text_type_main-medium' >Начинка</p>
                 <div className={`${ingredients.items} pt-6 pr-4 pl-4`}>
                 {mains.map((ingredient) => (
-                     <IngredientCard handleOpen={handleOpen} ingredient={ingredient} key={ingredient._id} />
+                     <IngredientCard setIngredientData={setIngredientData} handleOpen={handleOpen} ingredient={ingredient} key={ingredient._id} />
                     ))}
                 </div>
             </div>
                     
 
             {
-                modalState.isVisible ?
-                <Modal handleClose={handleIngredientClose}>
-                    {<IngredientDetails ingredientData={ modalState.data }/>}
+                ingredientData.isOpen ?
+                <Modal handleClose={handleClose}>
+                    {<IngredientDetails ingredientData={ ingredientData.data }/>}
                 </Modal> :
                 null
             }
@@ -62,5 +78,12 @@ const BurgerIngredients = ({handleOpen, handleIngredientClose, data, modalState}
 
     );
 }
+
+// BurgerIngredients.propTypes = {
+//     handleOpen:PropTypes.func.isRequired,
+//     handleIngredientClose:PropTypes.func.isRequired,
+//     modalState: PropTypes.object.isRequired,
+//     data: PropTypes.array
+// }
 
 export default BurgerIngredients;

@@ -1,7 +1,8 @@
 import card from './ingredient-card.module.css'
 import { CurrencyIcon, Counter} from '@ya.praktikum/react-developer-burger-ui-components'
 
-const IngredientCard = ({ingredient, handleOpen}) => {
+const IngredientCard = ({ingredient, handleOpen, setIngredientData}) => {
+    setIngredientData({isOpen: true, data: ingredient});
 
     return (
         <div onClick={handleOpen} className={`${card.card}`}>
