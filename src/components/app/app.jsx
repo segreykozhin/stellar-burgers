@@ -10,32 +10,28 @@ import OrderDetails from "../order-details/order-details";
 const api = 'https://norma.nomoreparties.space/api/ingredients ';
 
 function App() {
-  const [dataState, setDataState] = useState({isLoading: false, haveError: false, data: []});
+  const [data, setData] = useState([]);
+  const [isDataLoading, setIsDataLoading] = useState(false);
+  const [isDataError, setIsDataError] = useState(false);
 
   useEffect(() => {
-    const getIngredientsData = () => {
-      setDataState({...dataState, isLoading: true});
-      fetch(api)
+    setIsDataLoading(true);
+    setIsDataError(false);
+    fetch(api)
       .then(res => res.json())
-      .then(res => setDataState({...dataState, data: JSON.parse(JSON.stringify(res)), isLoading: false}))
-      .catch(e => {
-        setDataState({...dataState, haveError: true, isLoading: false});
-        console.log(`${e}`);
-      })
-    }
-    getIngredientsData();
-  },[dataState]);
+      .then(res => setData(res.data))
+      .catch(() => setIsDataError(true))
+      .finally(() => setIsDataLoading(false))
+  },[]);
 
-  
+  console.log(data)
 
-  console.log(dataState.data);
-
-  const [ingredientIsVisible, setIngredientIsVisible] = useState(false);
-  const handleIngredientOpen = () => {
-    setIngredientIsVisible({ingredientIsVisible: true})
+  const [ingredientIsVisible, setIngredientIsVisible] = useState({isVisible: false, data: {}});
+  const handleIngredientOpen = (ingredient) => {
+    setIngredientIsVisible({isVisible: true, data: {...ingredient}});
   }
   const handleIngredientClose = () => {
-    setIngredientIsVisible(!ingredientIsVisible);
+    setIngredientIsVisible({isVisible: false, data: {}});
     }
 
     const [orderIsVisible, setOrderIsVisible] = useState(false);
@@ -48,7 +44,9 @@ function App() {
 
   // const closeByEscape = (evt) => {
   //   if (evt.key === 'Escape') {
-  //     handleClose();
+  //     handleIngredientClose();
+  //     handleOrderClose();
+
   //   }
   // }
 
@@ -56,19 +54,22 @@ function App() {
     <div className={styles.app}>
         <AppHeader />
         <main className={styles.main}>
-          <BurgerIngredients data={dataState} handleOpen={handleIngredientOpen} />
-          <BurgerConstructor handleOpen={handleOrderOpen}/>
-          {
+          {(data.length!==0)&&!isDataLoading ?
+          <>
+          <BurgerIngredients modalState={ingredientIsVisible} handleIngredientClose={handleIngredientClose} data={data} handleOpen={handleIngredientOpen} />
+          <BurgerConstructor data={data} handleOpen={handleOrderOpen}/></> : null
+          }
+          {/* {
             ingredientIsVisible ?
             <Modal handleClose={handleIngredientClose}>
               {<IngredientDetails/>}
             </Modal> :
             null
-          }
+          } */}
           {
             orderIsVisible ?
             <Modal handleClose={handleOrderClose}>
-              {<OrderDetails/>}
+              {<OrderDetails />}
             </Modal> :
             null
           }

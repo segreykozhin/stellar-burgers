@@ -1,9 +1,8 @@
 import constructor from './burger-constructor.module.css';
-import {data} from '../../utils/data';
 import {Button, CurrencyIcon, ConstructorElement, DragIcon} from '@ya.praktikum/react-developer-burger-ui-components';
 import bun from '../../images/bun-02.png';
 
-const BurgerConstructor = ({handleOpen}) => {
+const BurgerConstructor = ({handleOpen, data}) => {
     return (
         <div>
             <div className={constructor.container}>
