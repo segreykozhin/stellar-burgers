@@ -26,6 +26,14 @@ function App() {
 
   console.log(data)
 
+  const [modalIngredient, setModalIngredient] = useState(null);
+  const handleClose = () => {
+      setModalIngredient(null);
+  }
+  const handleOpen = (ingredient) => {
+  setModalIngredient(ingredient)
+  }
+
     const [orderIsVisible, setOrderIsVisible] = useState(false);
     const handleOrderOpen = () => {
       setOrderIsVisible({orderIsVisible: true});
@@ -34,30 +42,22 @@ function App() {
       setOrderIsVisible(!orderIsVisible);
     }
 
-  // const closeByEscape = (evt) => {
-  //   if (evt.key === 'Escape') {
-  //     handleIngredientClose();
-  //     handleOrderClose();
-
-  //   }
-  // }
+    const closeByEscape = (evt) => {
+    if (evt.key === 'Escape') {
+      handleOrderClose();
+      handleClose();
+    }
+  }
 
   return (
-    <div className={styles.app}>
+    <div onKeyDown={closeByEscape} className={styles.app}>
         <AppHeader />
         <main className={styles.main}>
           {(data.length!==0)&&!isDataLoading ?
           <>
-          <BurgerIngredients data={data} />
+          <BurgerIngredients closeByEscape={closeByEscape} handleOpen={handleOpen} handleClose={handleClose} modalIngredient={modalIngredient} data={data} />
           <BurgerConstructor data={data} handleOpen={handleOrderOpen}/></> : null
           }
-          {/* {
-            ingredientIsVisible ?
-            <Modal handleClose={handleIngredientClose}>
-              {<IngredientDetails/>}
-            </Modal> :
-            null
-          } */}
           {
             orderIsVisible ?
             <Modal handleClose={handleOrderClose}>

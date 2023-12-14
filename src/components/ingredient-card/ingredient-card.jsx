@@ -1,7 +1,9 @@
 import card from './ingredient-card.module.css'
-import { CurrencyIcon, Counter} from '@ya.praktikum/react-developer-burger-ui-components'
+import { CurrencyIcon, Counter} from '@ya.praktikum/react-developer-burger-ui-components';
+import PropTypes from 'prop-types';
 
 const IngredientCard = ({ingredient, handleOpen}) => {
+    
 
     return (
         <div onClick={()=>{handleOpen(ingredient)}} className={`${card.card}`}>
@@ -14,6 +16,11 @@ const IngredientCard = ({ingredient, handleOpen}) => {
             <Counter count={1} size="default" extraClass="m-1"/>
         </div>
     );
+}
+
+IngredientCard.propTypes = {
+    ingredient: PropTypes.object.isRequired,
+    handleOpen: PropTypes.func.isRequired
 }
 
 export default IngredientCard;
