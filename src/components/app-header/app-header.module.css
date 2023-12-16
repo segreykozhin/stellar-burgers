@@ -1,0 +1,21 @@
+.container {
+    max-width: 1920px;
+    margin: 0 auto;
+    background-color: #1c1c21;
+}
+
+.nav {
+    display: flex;
+    flex-direction: row;
+}
+
+.link {
+    display: inherit;
+    color:#F2F2F3;
+    text-decoration: none;
+}
+
+.logo {
+    margin-left: 112px;
+    margin-right: 289px;
+}
