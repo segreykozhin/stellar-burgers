@@ -12,7 +12,7 @@ const IngredientCard = ({ingredient, handleOpen}) => {
                 <p className='text text_type_digits-medium mr-2'>{ingredient.price}</p>
                 <CurrencyIcon type='primary'/>
             </div>
-            <p className='text text_type_main-default' style={{margin: '0 auto'}}>{ingredient.name}</p>
+            <p className={`${card.name} text text_type_main-default`} >{ingredient.name}</p>
             <Counter count={1} size="default" extraClass="m-1"/>
         </div>
     );

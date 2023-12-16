@@ -3,7 +3,12 @@ import {Button, CurrencyIcon, ConstructorElement, DragIcon} from '@ya.praktikum/
 import bun from '../../images/bun-02.png';
 import PropTypes from 'prop-types';
 
+// data.filter((item) => item.type ==='bun')
+
+
 const BurgerConstructor = ({handleOpen, data}) => {
+    const ingredients = data.filter((item) => item.type !=='bun');
+
     return (
         <div>
             <div className={constructor.container}>
@@ -16,7 +21,7 @@ const BurgerConstructor = ({handleOpen, data}) => {
                             thumbnail={bun}/>
                 </span>
                 <ul className={`${constructor.list} custom-scroll`}>
-                    {data.map((ingredient) => (
+                    {ingredients.map((ingredient) => (
                         <li key={ingredient._id} className={constructor.item}>
                             <DragIcon type="primary" />
                             <ConstructorElement 
@@ -38,12 +43,12 @@ const BurgerConstructor = ({handleOpen, data}) => {
             <div className={constructor.total}>
                     <p className='mr-2 text text_type_digits-medium'>610</p>
                     <CurrencyIcon
-                    style={{width: '36px', height: '36px'}}
                     type='primary'/>
-                    <Button onClick={handleOpen} style={{marginLeft: '40px'}}
+                    <div className='pr-10'></div>
+                    <Button onClick={handleOpen}
                     htmlType='button'
                     type='primary'
-                    size='large' >
+                    size='large'>
                         Оформить заказ
                     </Button>
             </div>

@@ -18,3 +18,7 @@
     display: inherit;
     align-items:center;
 }
+
+.name {
+    margin: 0 auto;
+}
